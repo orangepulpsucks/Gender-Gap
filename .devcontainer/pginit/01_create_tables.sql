@@ -1,5 +1,5 @@
 create table theme (
-    ApplicantNo int not null,
+    ApplicantNo text not null,
     Age text not null,
     EdLevel text not null, 
     Gender text not null,
@@ -9,4 +9,6 @@ create table theme (
     HaveWorkedWith text not null,
     ComputerSkills text not null
 );
+
+
 

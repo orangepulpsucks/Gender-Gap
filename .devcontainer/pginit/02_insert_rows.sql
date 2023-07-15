@@ -3,3 +3,4 @@ copy theme(ApplicantNo, Age, EdLevel, Gender, MainBranch, YearsCode,
 from '/docker-entrypoint-initdb.d/seed_data/job_applicant_data.csv'
 delimiter ','
 csv header;
+
