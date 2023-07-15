@@ -1,13 +1,13 @@
 create table theme (
-    ApplicantNo text,
+    ApplicantNo int not null,
     Age text,
     EdLevel text, 
     Gender text,
     MainBranch text,
-    YearsCode text,
+    YearsCode int not null,
     Country text,
     HaveWorkedWith text,
-    ComputerSkills text 
+    ComputerSkills int not null 
 );
 
 
