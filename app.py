@@ -52,7 +52,7 @@ def render_sets1():
         "limit" : limit
 }
 
-    def get_sort_dir1(col):
+    def get_sort_dir(col):
         if col== sort_by:
             return "desc" if sort_dir == "asc" else "asc"
         else:
@@ -70,8 +70,10 @@ def render_sets1():
         cur.execute(f"select count(*) as count {from_where_clause1}", params1)
         count = cur.fetchone()["count"]
 
-
+    print(results1)
+    
     return render_template("home.html",
                            params1=request.args,
-                           result_count =count
+                           result_count=count,
+                           get_sort_dir = get_sort_dir
                            )    
