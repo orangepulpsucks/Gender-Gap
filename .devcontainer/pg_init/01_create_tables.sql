@@ -6,7 +6,7 @@ create table theme (
     MainBranch text,
     YearsCode int not null,
     Country text,
-    HaveWorkedWith text,
+    HaveWorkedWith varchar,
     ComputerSkills int not null 
 );
 

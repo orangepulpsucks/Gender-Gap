@@ -2,39 +2,28 @@
 
     <!-- Header -->
     <a href="http://127.0.0.1:5000" style="text-decoration: none;"><h1>Gender Inequality</h1></a>
-    <!-- <a href="http://127.0.0.1:5000" style="text-decoration: none;"><h2>X</h2></a> -->
   
     <!-- Menu Tabs -->
     <nav>
       <ul id="main">
         <li onclick="window.location.href='http://127.0.0.1:5000/'">Home</li>
-        <!-- For DROPDOWN MENU 
-          <li>Browse by Category
-          <ul class="drop">
-            <div>
-              <li onclick="window.location.href='http://127.0.0.1:5000/category-by-year'">by Year</li>
-              <li onclick="window.location.href='http://127.0.0.1:5000/category-by-genre'">by Genre</li>
-            </div>
-          </ul>
-        </li> -->
-        <!-- <li onclick="window.location.href='http://127.0.0.1:5000/random-film'"></li>
-        <li onclick="window.location.href='http://127.0.0.1:5000/directory'">Directory</li> -->
         <li onclick="window.location.href='http://127.0.0.1:5000/about'">About</li>
   
       </ul>
     </nav>
   </body>
   
-  <form action="directory" method="get">
+  <form action="/" method="get">
+   
     <!-- Directory Search -->
     <!-- #gender_d, edlevel_d, mainbranch_d, yearscode, computerskills,haveworkedwith,country -->
-    <input type="text" name="gender" placeholder="gender" value="{{ params1['gender'] }}" size="14">
-    <input type="text" name="edlevel" placeholder="edlevel" value="{{ params1['edlevel'] }}" size="14">
-    <input type="text" name="mainbranch" placeholder="mainbranch" value="{{ params1['mainbranch'] }}" size="14">
-    <input type="text" name="yearscode" placeholder="yearscode" value="{{ params1['yearscode'] }}" size="14">
-    <input type="text" name="computerskills" placeholder="computerskills" value="{{ params1['computerskills'] }}" size="14">
-    <input type="text" name="haveworkedwith" placeholder="haveworkedwith" value="{{ params1['haveworkedwith'] }}" size="14">
-    <input type="text" name="country" placeholder="country" value="{{ params1['country'] }}" size="14">
+    <input type="text" name="gender" placeholder="Search Gender" value="{{ params1['gender'] }}" size="17">
+    <input type="text" name="edlevel" placeholder="Search Education Level" value="{{ params1['edlevel'] }}" size="17">
+    <input type="text" name="mainbranch" placeholder="Search Main Branch" value="{{ params1['mainbranch'] }}" size="17">
+    <input type="text" name="yearscode" placeholder="Search Years of Coding" value="{{ params1['yearscode'] }}" size="17">
+    <input type="text" name="computerskills" placeholder="Search No of Skills" value="{{ params1['computerskills'] }}" size="17">
+    <input type="text" name="haveworkedwith" placeholder="Search Skills" value="{{ params1['haveworkedwith'] }}" size="17">
+    <input type="text" name="country" placeholder="Search Country" value="{{ params1['country'] }}" size="17">
 
     <button type="submit">Search</button>
   </form>
@@ -44,16 +33,14 @@
     <h6 class="custom-heading">{{ result_count }} RESULTS</h6>
     {% endif %}
   
-    
-
-    {% if theme %}
+    <!-- {% if theme %} -->
+    {% if not summary %}
     <div class="table_container">
       <table class="boostrap4_table_head_dark_hoverable">
         <thead>
-      <!-- #gender_d, edlevel_d, mainbranch_d, yearscode, computerskills,haveworkedwith,country -->
 
             <th> 
-              <a href="/directory?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=gender&sort_dir={{ get_sort_dir('gender') }}" style="text-decoration: none; color: inherit;">Gender</a>
+              <a href="/?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=gender&sort_dir={{ get_sort_dir('gender') }}" style="text-decoration: none; color: inherit;">Gender</a>
                   {% if params1['sort_by'] == 'gender' %}
                       {% if params1['sort_dir'] == 'asc' %}
                           <span>&#8593;</span>
@@ -64,7 +51,7 @@
             </th>
   
             <th>                    
-                <a href="/directory?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=edlevel&sort_dir={{ get_sort_dir('edlevel') }}" style="text-decoration: none; color: inherit;">Education Level</a>
+                <a href="/?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=edlevel&sort_dir={{ get_sort_dir('edlevel') }}" style="text-decoration: none; color: inherit;">Education Level</a>
                 {% if params1['sort_by'] == 'edlevel' %}
                     {% if params1['sort_dir'] == 'asc' %}
                         <span>&#8593;</span>
@@ -75,7 +62,7 @@
             </th>
   
             <th>
-                <a href="/directory?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=mainbranch&sort_dir={{ get_sort_dir('mainbranch') }}" style="text-decoration: none; color: inherit;">Main Branch</a>
+                <a href="/?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=mainbranch&sort_dir={{ get_sort_dir('mainbranch') }}" style="text-decoration: none; color: inherit;">Main Branch</a>
                 {% if params1['sort_by'] == 'mainbranch' %}
                     {% if params1['sort_dir'] == 'asc' %}
                         <span>&#8593;</span>
@@ -86,7 +73,7 @@
             </th>
             
             <th>
-                <a href="/directory?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=yearscode&sort_dir={{ get_sort_dir('yearscode') }}" style="text-decoration: none; color: inherit;">Years Coded</a>
+                <a href="/?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=yearscode&sort_dir={{ get_sort_dir('yearscode') }}" style="text-decoration: none; color: inherit;">Years Coded</a>
                 {% if params1['sort_by'] == 'yearscode' %}
                     {% if params1['sort_dir'] == 'asc' %}
                         <span>&#8593;</span>
@@ -101,7 +88,7 @@
             </th>
   
             <th>
-                <a href="/directory?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=computerskills&sort_dir={{ get_sort_dir('computerskills') }}" style="text-decoration: none; color: inherit;">Skills</a>
+                <a href="/?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=computerskills&sort_dir={{ get_sort_dir('computerskills') }}" style="text-decoration: none; color: inherit;">Skills</a>
                 {% if params1['sort_by'] == 'computerskills' %}
                     {% if params1['sort_dir'] == 'asc' %}
                         <span>&#8593;</span>
@@ -111,7 +98,7 @@
                 {% endif %}
             </th>
             <th>
-                <a href="/directory?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=haveworkedwith&sort_dir={{ get_sort_dir('haveworkedwith') }}" style="text-decoration: none; color: inherit;">No. of Skills</a>
+                <a href="/?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=haveworkedwith&sort_dir={{ get_sort_dir('haveworkedwith') }}" style="text-decoration: none; color: inherit;">No. of Skills</a>
                 {% if params1['sort_by'] == 'haveworkedwith' %}
                     {% if params1['sort_dir'] == 'asc' %}
                         <span>&#8593;</span>
@@ -122,7 +109,7 @@
             </th>
 
             <th>
-                <a href="/directory?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=country&sort_dir={{ get_sort_dir('country') }}" style="text-decoration: none; color: inherit;">Country</a>
+                <a href="/home?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=country&sort_dir={{ get_sort_dir('country') }}" style="text-decoration: none; color: inherit;">Country</a>
                 {% if params1['sort_by'] == 'country' %}
                     {% if params1['sort_dir'] == 'asc' %}
                         <span>&#8593;</span>
@@ -131,6 +118,10 @@
                     {% endif %}
                 {% endif %}
             </th>
+            {% else %}
+                <div style="text-align: center;">
+                <h6 class="custom-heading">NO RESULTS</h6>
+            {% endif %}
 
             
         </thead>
@@ -138,15 +129,15 @@
     <!-- #gender_d, edlevel_d, mainbranch_d, yearscode, computerskills,haveworkedwith,country -->
 
         <tbody>
-          {% for theme in theme %}
+          {% for item in theme %}
             <tr>
-              <td>{{ theme.gender }}</td>
-              <td>{{ theme.edlevel }}</td>
-              <td>{{ theme.mainbranch }}</td>
-              <td>{{ theme.yearscode }}</td>
-              <td>{{ theme.computerskills }}</td>
-              <td>{{ theme.haveworkedwith }}</td>
-              <td>{{ theme.country }}</td>
+              <td>{{ item.gender }}</td>
+              <td>{{ item.edlevel }}</td>
+              <td>{{ item.mainbranch }}</td>
+              <td>{{ item.yearscode }}</td>
+              <td>{{ item.computerskills }}</td>
+              <td>{{ item.haveworkedwith }}</td>
+              <td>{{ item.country }}</td>
             </tr>
         </tbody>
         {% endfor %}
@@ -154,9 +145,11 @@
   </div>
   
   {% else %}
-          <div style="text-align: center;">
-          <h6 class="custom-heading">NO RESULTS</h6>
-    
-      {% endif %}
+  <div style="text-align: center;">
+  <h1>No results :(</h1>
+  </div>
+  {% endif %}
   
   </body>
+
+  
