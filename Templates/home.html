@@ -1,8 +1,8 @@
 <body>
 
     <!-- Header -->
-    <a href="http://127.0.0.1:5000" style="text-decoration: none;"><h1>IMDB</h1></a>
-    <a href="http://127.0.0.1:5000" style="text-decoration: none;"><h2>TOP 1000</h2></a>
+    <a href="http://127.0.0.1:5000" style="text-decoration: none;"><h1>Gender Inequality</h1></a>
+    <!-- <a href="http://127.0.0.1:5000" style="text-decoration: none;"><h2>X</h2></a> -->
   
     <!-- Menu Tabs -->
     <nav>
@@ -17,9 +17,9 @@
             </div>
           </ul>
         </li> -->
-        <!-- <li onclick="window.location.href='http://127.0.0.1:5000/random-film'">Random Film</li>
-        <li onclick="window.location.href='http://127.0.0.1:5000/directory'">Directory</li>
-        <li onclick="window.location.href='http://127.0.0.1:5000/about'">About</li> -->
+        <!-- <li onclick="window.location.href='http://127.0.0.1:5000/random-film'"></li>
+        <li onclick="window.location.href='http://127.0.0.1:5000/directory'">Directory</li> -->
+        <li onclick="window.location.href='http://127.0.0.1:5000/about'">About</li>
   
       </ul>
     </nav>
@@ -28,22 +28,22 @@
   <form action="directory" method="get">
     <!-- Directory Search -->
     <!-- #gender_d, edlevel_d, mainbranch_d, yearscode, computerskills,haveworkedwith,country -->
-    <input type="text" name="gender" placeholder="gender" value="{{ params['gender'] }}" size="14">
-    <input type="text" name="edlevel" placeholder="edlevel" value="{{ params['edlevel'] }}" size="14">
-    <input type="text" name="mainbranch" placeholder="mainbranch" value="{{ params['mainbranch'] }}" size="14">
-    <input type="text" name="yearscode" placeholder="yearscode" value="{{ params['yearscode'] }}" size="14">
-    <input type="text" name="computerskills" placeholder="computerskills" value="{{ params['computerskills'] }}" size="14">
-    <input type="text" name="haveworkedwith" placeholder="haveworkedwith" value="{{ params['haveworkedwith'] }}" size="14">
-    <input type="text" name="country" placeholder="country" value="{{ params['country'] }}" size="14">
+    <input type="text" name="gender" placeholder="gender" value="{{ params1['gender'] }}" size="14">
+    <input type="text" name="edlevel" placeholder="edlevel" value="{{ params1['edlevel'] }}" size="14">
+    <input type="text" name="mainbranch" placeholder="mainbranch" value="{{ params1['mainbranch'] }}" size="14">
+    <input type="text" name="yearscode" placeholder="yearscode" value="{{ params1['yearscode'] }}" size="14">
+    <input type="text" name="computerskills" placeholder="computerskills" value="{{ params1['computerskills'] }}" size="14">
+    <input type="text" name="haveworkedwith" placeholder="haveworkedwith" value="{{ params1['haveworkedwith'] }}" size="14">
+    <input type="text" name="country" placeholder="country" value="{{ params1['country'] }}" size="14">
 
     <button type="submit">Search</button>
   </form>
   
-<!--   
+  
     {% if result_count > 0 %}
-    <h6 class="custom-heading">{{ result_count }} FILMS</h6>
+    <h6 class="custom-heading">{{ result_count }} RESULTS</h6>
     {% endif %}
-   -->
+  
     
 
     {% if theme %}
@@ -53,9 +53,9 @@
       <!-- #gender_d, edlevel_d, mainbranch_d, yearscode, computerskills,haveworkedwith,country -->
 
             <th> 
-              <a href="/directory?gender={{ params['gender'] }}&edlevel={{ params['edlevel'] }}&mainbranch={{ params['mainbranch'] }}&yearscode={{ params['yearscode'] }}&computerskills={{ params['computerskills'] }}&haveworkedwith={{ params['haveworkedwith'] }}&country={{ params['country'] }}&sort_by=gender&sort_dir={{ get_sort_dir('gender') }}" style="text-decoration: none; color: inherit;">Gender</a>
-                  {% if params['sort_by'] == 'gender' %}
-                      {% if params['sort_dir'] == 'asc' %}
+              <a href="/directory?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=gender&sort_dir={{ get_sort_dir('gender') }}" style="text-decoration: none; color: inherit;">Gender</a>
+                  {% if params1['sort_by'] == 'gender' %}
+                      {% if params1['sort_dir'] == 'asc' %}
                           <span>&#8593;</span>
                       {% else %}
                           <span>&#8595;</span>
@@ -64,9 +64,9 @@
             </th>
   
             <th>                    
-                <a href="/directory?gender={{ params['gender'] }}&edlevel={{ params['edlevel'] }}&mainbranch={{ params['mainbranch'] }}&yearscode={{ params['yearscode'] }}&computerskills={{ params['computerskills'] }}&haveworkedwith={{ params['haveworkedwith'] }}&country={{ params['country'] }}&sort_by=edlevel&sort_dir={{ get_sort_dir('edlevel') }}" style="text-decoration: none; color: inherit;">Education Level</a>
-                {% if params['sort_by'] == 'edlevel' %}
-                    {% if params['sort_dir'] == 'asc' %}
+                <a href="/directory?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=edlevel&sort_dir={{ get_sort_dir('edlevel') }}" style="text-decoration: none; color: inherit;">Education Level</a>
+                {% if params1['sort_by'] == 'edlevel' %}
+                    {% if params1['sort_dir'] == 'asc' %}
                         <span>&#8593;</span>
                     {% else %}
                         <span>&#8595;</span>
@@ -75,9 +75,9 @@
             </th>
   
             <th>
-                <a href="/directory?gender={{ params['gender'] }}&edlevel={{ params['edlevel'] }}&mainbranch={{ params['mainbranch'] }}&yearscode={{ params['yearscode'] }}&computerskills={{ params['computerskills'] }}&haveworkedwith={{ params['haveworkedwith'] }}&country={{ params['country'] }}&sort_by=mainbranch&sort_dir={{ get_sort_dir('mainbranch') }}" style="text-decoration: none; color: inherit;">Main Branch</a>
-                {% if params['sort_by'] == 'mainbranch' %}
-                    {% if params['sort_dir'] == 'asc' %}
+                <a href="/directory?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=mainbranch&sort_dir={{ get_sort_dir('mainbranch') }}" style="text-decoration: none; color: inherit;">Main Branch</a>
+                {% if params1['sort_by'] == 'mainbranch' %}
+                    {% if params1['sort_dir'] == 'asc' %}
                         <span>&#8593;</span>
                     {% else %}
                         <span>&#8595;</span>
@@ -86,9 +86,9 @@
             </th>
             
             <th>
-                <a href="/directory?gender={{ params['gender'] }}&edlevel={{ params['edlevel'] }}&mainbranch={{ params['mainbranch'] }}&yearscode={{ params['yearscode'] }}&computerskills={{ params['computerskills'] }}&haveworkedwith={{ params['haveworkedwith'] }}&country={{ params['country'] }}&sort_by=yearscode&sort_dir={{ get_sort_dir('yearscode') }}" style="text-decoration: none; color: inherit;">Years Coded</a>
-                {% if params['sort_by'] == 'yearscode' %}
-                    {% if params['sort_dir'] == 'asc' %}
+                <a href="/directory?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=yearscode&sort_dir={{ get_sort_dir('yearscode') }}" style="text-decoration: none; color: inherit;">Years Coded</a>
+                {% if params1['sort_by'] == 'yearscode' %}
+                    {% if params1['sort_dir'] == 'asc' %}
                         <span>&#8593;</span>
                     {% else %}
                         <span>&#8595;</span>
@@ -101,9 +101,9 @@
             </th>
   
             <th>
-                <a href="/directory?gender={{ params['gender'] }}&edlevel={{ params['edlevel'] }}&mainbranch={{ params['mainbranch'] }}&yearscode={{ params['yearscode'] }}&computerskills={{ params['computerskills'] }}&haveworkedwith={{ params['haveworkedwith'] }}&country={{ params['country'] }}&sort_by=computerskills&sort_dir={{ get_sort_dir('computerskills') }}" style="text-decoration: none; color: inherit;">Skills</a>
-                {% if params['sort_by'] == 'computerskills' %}
-                    {% if params['sort_dir'] == 'asc' %}
+                <a href="/directory?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=computerskills&sort_dir={{ get_sort_dir('computerskills') }}" style="text-decoration: none; color: inherit;">Skills</a>
+                {% if params1['sort_by'] == 'computerskills' %}
+                    {% if params1['sort_dir'] == 'asc' %}
                         <span>&#8593;</span>
                     {% else %}
                         <span>&#8595;</span>
@@ -111,9 +111,9 @@
                 {% endif %}
             </th>
             <th>
-                <a href="/directory?gender={{ params['gender'] }}&edlevel={{ params['edlevel'] }}&mainbranch={{ params['mainbranch'] }}&yearscode={{ params['yearscode'] }}&computerskills={{ params['computerskills'] }}&haveworkedwith={{ params['haveworkedwith'] }}&country={{ params['country'] }}&sort_by=haveworkedwith&sort_dir={{ get_sort_dir('haveworkedwith') }}" style="text-decoration: none; color: inherit;">No. of Skills</a>
-                {% if params['sort_by'] == 'haveworkedwith' %}
-                    {% if params['sort_dir'] == 'asc' %}
+                <a href="/directory?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=haveworkedwith&sort_dir={{ get_sort_dir('haveworkedwith') }}" style="text-decoration: none; color: inherit;">No. of Skills</a>
+                {% if params1['sort_by'] == 'haveworkedwith' %}
+                    {% if params1['sort_dir'] == 'asc' %}
                         <span>&#8593;</span>
                     {% else %}
                         <span>&#8595;</span>
@@ -122,9 +122,9 @@
             </th>
 
             <th>
-                <a href="/directory?gender={{ params['gender'] }}&edlevel={{ params['edlevel'] }}&mainbranch={{ params['mainbranch'] }}&yearscode={{ params['yearscode'] }}&computerskills={{ params['computerskills'] }}&haveworkedwith={{ params['haveworkedwith'] }}&country={{ params['country'] }}&sort_by=country&sort_dir={{ get_sort_dir('country') }}" style="text-decoration: none; color: inherit;">Country</a>
-                {% if params['sort_by'] == 'country' %}
-                    {% if params['sort_dir'] == 'asc' %}
+                <a href="/directory?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=country&sort_dir={{ get_sort_dir('country') }}" style="text-decoration: none; color: inherit;">Country</a>
+                {% if params1['sort_by'] == 'country' %}
+                    {% if params1['sort_dir'] == 'asc' %}
                         <span>&#8593;</span>
                     {% else %}
                         <span>&#8595;</span>
