@@ -12,9 +12,9 @@ app = Flask(__name__)
 # HOME -> 1
 @app.route('/')
 def render_sets1():
-    edlevel = request.args.get("edlevel", "")
-    gender = request.args.get("gender", "")
-    mainbranch = request.args.get("mainbranch", "")
+    edlevel = request.args.get("edlevel", "%")
+    gender = request.args.get("gender", "%")
+    mainbranch = request.args.get("mainbranch", "%")
     yearscode = request.args.get("yearscode", "")
     country = request.args.get("country", "")
     haveworkedwith = request.args.get("haveworkedwith", "")
@@ -22,24 +22,37 @@ def render_sets1():
     
     sort_by = request.args.get("sort_by", "yearscode")
     sort_dir = request.args.get("sort_dir", "asc")
-    limit = request.args.get("limit", 1000, type=int)
+    limit = request.args.get("limit", 500, type=int)
 
+#note to self: ilike is case insensitive!
 #gender_d, edlevel_d, mainbranch_d, yearscode, computerskills,haveworkedwith, country
+    # from_where_clause1 = """
+    #     from theme
+    #     where %(gender)s is null or gender like %(gender)s
+    #     and ( %(edlevel)s is null or edlevel like %(edlevel)s )
+    #     and ( %(mainbranch)s is null or mainbranch like %(mainbranch)s )
+    #     and ( %(yearscode)s is null or yearscode = %(yearscode)s )
+    #     and ( %(computerskills)s is null or computerskills = %(computerskills)s )
+    #     and ( %(haveworkedwith)s is null or haveworkedwith ilike %(haveworkedwith)s )
+    #     and ( %(country)s is null or country ilike %(country)s )
+    # """
     from_where_clause1 = """
         from theme
-        where %(gender)s is null or gender ilike %(gender)s
-        and ( %(edlevel)s is null or edlevel ilike %(edlevel)s )
-        and ( %(mainbranch)s is null or mainbranch ilike %(mainbranch)s )
+        where %(gender)s is null or gender like %(gender)s
+        and (  %(edlevel)s is null or edlevel like %(edlevel)s )
+        and ( %(mainbranch)s is null or mainbranch like %(mainbranch)s)
         and ( %(yearscode)s is null or yearscode = %(yearscode)s )
         and ( %(computerskills)s is null or computerskills = %(computerskills)s )
         and ( %(haveworkedwith)s is null or haveworkedwith ilike %(haveworkedwith)s )
         and ( %(country)s is null or country ilike %(country)s )
     """
 
+
     params1 = {
-        "gender": f"%{gender}%",
-        "edlevel": f"%{edlevel}%",
-        "mainbranch": f"%{mainbranch}",
+        "gender": f"{gender}",
+        "edlevel": f"{edlevel}",
+        # "mainbranch": f"{mainbranch}" if mainbranch != '' else '%',
+        "mainbranch": f"{mainbranch}",
         "yearscode": int(yearscode) if yearscode and yearscode.isdigit() else 0
         if yearscode and not yearscode.isdigit() else None,
         "computerskills": int(computerskills) if computerskills and computerskills.isdigit() else 0
@@ -73,6 +86,7 @@ def render_sets1():
     print(results1)
     
     return render_template("home.html",
+                           theme=results1,
                            params1=request.args,
                            result_count=count,
                            get_sort_dir = get_sort_dir
