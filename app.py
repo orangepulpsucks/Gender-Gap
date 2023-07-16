@@ -19,23 +19,11 @@ def render_sets1():
     country = request.args.get("country", "")
     haveworkedwith = request.args.get("haveworkedwith", "")
     computerskills = request.args.get("computerskills", "")
-    
     sort_by = request.args.get("sort_by", "yearscode")
     sort_dir = request.args.get("sort_dir", "asc")
     limit = request.args.get("limit", 500, type=int)
 
 #note to self: ilike is case insensitive!
-#gender_d, edlevel_d, mainbranch_d, yearscode, computerskills,haveworkedwith, country
-    # from_where_clause1 = """
-    #     from theme
-    #     where %(gender)s is null or gender like %(gender)s
-    #     and ( %(edlevel)s is null or edlevel like %(edlevel)s )
-    #     and ( %(mainbranch)s is null or mainbranch like %(mainbranch)s )
-    #     and ( %(yearscode)s is null or yearscode = %(yearscode)s )
-    #     and ( %(computerskills)s is null or computerskills = %(computerskills)s )
-    #     and ( %(haveworkedwith)s is null or haveworkedwith ilike %(haveworkedwith)s )
-    #     and ( %(country)s is null or country ilike %(country)s )
-    # """
     from_where_clause1 = """
         from theme
         where %(gender)s is null or gender like %(gender)s
@@ -46,7 +34,6 @@ def render_sets1():
         and ( %(haveworkedwith)s is null or haveworkedwith ilike %(haveworkedwith)s )
         and ( %(country)s is null or country ilike %(country)s )
     """
-
 
     params1 = {
         "gender": f"{gender}",

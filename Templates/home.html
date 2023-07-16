@@ -8,7 +8,7 @@
   <style>
     h1 {
       /* main header */
-      margin-top: -125px;
+      margin-top: -100px;
       margin-bottom: 0px;
       font-size: 45px;
       font-family: arial;
@@ -69,7 +69,7 @@
     }
 
     h6 {
-      margin-top: 10px;
+      margin-top: 25px;
       font-size: 80px;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
         'Open Sans', 'Helvetica Neue', sans-serif;
@@ -142,7 +142,7 @@
       justify-content: center;
       align-items: center;
       height: 9vh;
-      padding-bottom: -100px;
+      padding-bottom: -50px;
     }
 
     #main {
@@ -252,9 +252,9 @@
 
     /* Table Styles */
     .table_container {
-      width: 90%;
+      width: 95%;
       margin: 5% auto;
-      margin-top: 50px;
+      margin-top: 25px;
     }
 
     .boostrap4_table_head_dark_hoverable {
@@ -275,12 +275,22 @@
       vertical-align: middle;
       border-bottom: 1px solid #fff;
     }
-    .boostrap4_table_head_dark_hoverable td {
-      padding: 12px 5px;
+
+    .haveworkedwith_td {
+      padding: -10px;
+      word-wrap: break-word;
+      white-space: normal;
       text-align: left;
+      color:rgb(255, 255, 255)
+    }
+
+    .boostrap4_table_head_dark_hoverable td {
+      padding: 10px 0px;
+      text-align: center;
       font-size: 17px;
       vertical-align: middle;
       border-bottom: 1px solid #fff;
+      max-width: 0px;
     }
 
     .boostrap4_table_head_dark_hoverable tbody tr:hover {
@@ -322,7 +332,9 @@
       text-transform: uppercase;
       margin-bottom: 20px;
     }
-  </style>
+
+
+      </style>
 </head>
 
 <body>
@@ -333,13 +345,13 @@
   <nav>
     <ul id="main">
       <li onclick="window.location.href='http://127.0.0.1:5000/'">Home</li>
+      <li onclick="window.location.href='http://127.0.0.1:5000/'">Visualizations</li>
       <li onclick="window.location.href='http://127.0.0.1:5000/about'">About</li>
-
     </ul>
   </nav>
 
   <form action="/" method="get">
-    <select name="gender" value="{{ params1['gender'] }}">
+    <select name="gender" value="{{ params1['gender'] }}" class="dropdown-search">
       <option value="" disabled selected hidden>Search Gender</option>
       <option value="Man">Man</option>
       <option value="NonBinary">Non Binary</option>
@@ -364,8 +376,13 @@
     
     <input type="text" name="yearscode" placeholder="Search Years" value="{{ params1['yearscode'] }}" size="14">
     <input type="text" name="computerskills" placeholder="Search # Skills" value="{{ params1['computerskills'] }}" size="14">
-    <input type="text" name="haveworkedwith" placeholder="Search Skills" value="{{ params1['haveworkedwith'] }}" size="14">
+    <input type="text" name="haveworkedwith" placeholder="Search Skills" value="{{ params1['haveworkedwith'] }}" size="14" style="color: black;">
     <input type="text" name="country" placeholder="Search Country" value="{{ params1['country'] }}" size="14">
+    <style>
+      input::placeholder {
+          color: black;
+      }
+    </style>
 
     <button type="submit">Search</button>
   </form>
@@ -429,10 +446,6 @@
         </th>
 
         <th>
-          Genre
-        </th>
-
-        <th>
           <a href="/?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=computerskills&sort_dir={{ get_sort_dir('computerskills') }}"
             style="text-decoration: none; color: inherit;">Computer Skills</a>
           {% if params1['sort_by'] == 'computerskills' %}
@@ -476,10 +489,9 @@
           <td>{{ row.edlevel }}</td>
           <td>{{ row.mainbranch }}</td>
           <td>{{ row.yearscode }}</td>
-          <td>{{ row.genre }}</td>
           <td>{{ row.computerskills }}</td>
-          <td>{{ row.haveworkedwith }}</td>
-          <td>{{ row.country }}</td>
+          <td class="haveworkedwith_td">{{ row.haveworkedwith }}</td>
+          <td class="haveworkedwith_td">{{ row.country }}</td>
         </tr>
         {% endfor %}
       </tbody>
