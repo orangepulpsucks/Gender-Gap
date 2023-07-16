@@ -3,7 +3,9 @@
 <html>
 
 <head>
-  <title>[HOME]</title>
+  <title>[VISUALIZATIONS]</title>
+
+  <script src="https://d3js.org/d3.v4.min.js"></script>
 
   <style>
     h1 {
@@ -350,158 +352,134 @@
     </ul>
   </nav>
 
-  <form action="/" method="get">
-    <select name="gender" value="{{ params1['gender'] }}" class="dropdown-search">
-      <option value="" disabled selected hidden>Search Gender</option>
-      <option value="Man">Man</option>
-      <option value="NonBinary">Non Binary</option>
-      <option value="Woman">Woman</option>
-  </select>
+<!-- Pie Graph -->
+<br> 
+<br>
+<h2>Pie Chart</h2>
+<br> 
 
 
-    <select name="edlevel" value="{{ params1['edlevel'] }}">
-      <option value="" disabled selected hidden>Search Education</option>
-      <option value="NoHigherEd">No Higher Ed</option>
-      <option value="Undergraduate">Undergrad</option>
-      <option value="Master">Master</option>
-      <option value="PhD">PhD</option>
-  </select>
+<svg width="500" height="400"></svg> <!--Step 2-->
 
-    <select name="mainbranch" value="{{ params1['mainbranch'] }}">
-      <option value="" disabled selected hidden>Search Branch</option>
-      <option value="Dev">Dev</option>
-      <option value="NotDev">Not Dev</option>
-  </select>
+<script>
 
-    
-    <input type="text" name="yearscode" placeholder="Search Years" value="{{ params1['yearscode'] }}" size="14">
-    <input type="text" name="computerskills" placeholder="Search # Skills" value="{{ params1['computerskills'] }}" size="14">
-    <input type="text" name="haveworkedwith" placeholder="Search Skills" value="{{ params1['haveworkedwith'] }}" size="14" style="color: black;">
-    <input type="text" name="country" placeholder="Search Country" value="{{ params1['country'] }}" size="14">
-    <style>
-      input::placeholder {
-          color: black;
-      }
-    </style>
+   
 
-    <button type="submit">Search</button>
-  </form>
+    // Step 3
 
-  {% if result_count > 0 %}
-  <h6 class="custom-heading">{{ result_count }} RESULTS</h6>
-  {% endif %}
+    var svg = d3.select("svg"),
 
-  {% if theme %}
-  <div class="table_container">
-    <table class="boostrap4_table_head_dark_hoverable">
-      <thead>
-        <!-- #gender_d, edlevel_d, mainbranch_d, yearscode, computerskills,haveworkedwith,country -->
+        width = svg.attr("width"),
 
-        <th>
-          <a href="/?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=gender&sort_dir={{ get_sort_dir('gender') }}"
-            style="text-decoration: none; color: inherit;">Gender</a>
-          {% if params1['sort_by'] == 'gender' %}
-          {% if params1['sort_dir'] == 'asc' %}
-          <span>&#8593;</span>
-          {% else %}
-          <span>&#8595;</span>
-          {% endif %}
-          {% endif %}
-        </th>
+        height = svg.attr("height"),
 
-        <th>
-          <a href="/?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=edlevel&sort_dir={{ get_sort_dir('edlevel') }}"
-            style="text-decoration: none; color: inherit;">Education Level</a>
-          {% if params1['sort_by'] == 'edlevel' %}
-          {% if params1['sort_dir'] == 'asc' %}
-          <span>&#8593;</span>
-          {% else %}
-          <span>&#8595;</span>
-          {% endif %}
-          {% endif %}
-        </th>
+        radius = 200;
 
-        <th>
-          <a href="/?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=mainbranch&sort_dir={{ get_sort_dir('mainbranch') }}"
-            style="text-decoration: none; color: inherit;">Main Branch</a>
-          {% if params1['sort_by'] == 'mainbranch' %}
-          {% if params1['sort_dir'] == 'asc' %}
-          <span>&#8593;</span>
-          {% else %}
-          <span>&#8595;</span>
-          {% endif %}
-          {% endif %}
-        </th>
 
-        <th>
-          <a href="/?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=yearscode&sort_dir={{ get_sort_dir('yearscode') }}"
-            style="text-decoration: none; color: inherit;">Years Coded</a>
-          {% if params1['sort_by'] == 'yearscode' %}
-          {% if params1['sort_dir'] == 'asc' %}
-          <span>&#8593;</span>
-          {% else %}
-          <span>&#8595;</span>
-          {% endif %}
-          {% endif %}
-        </th>
 
-        <th>
-          <a href="/?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=computerskills&sort_dir={{ get_sort_dir('computerskills') }}"
-            style="text-decoration: none; color: inherit;">Computer Skills</a>
-          {% if params1['sort_by'] == 'computerskills' %}
-          {% if params1['sort_dir'] == 'asc' %}
-          <span>&#8593;</span>
-          {% else %}
-          <span>&#8595;</span>
-          {% endif %}
-          {% endif %}
-        </th>
+    // Step 1       
 
-        <th>
-          <a href="/?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=haveworkedwith&sort_dir={{ get_sort_dir('haveworkedwith') }}"
-            style="text-decoration: none; color: inherit;">Have Worked With</a>
-          {% if params1['sort_by'] == 'haveworkedwith' %}
-          {% if params1['sort_dir'] == 'asc' %}
-          <span>&#8593;</span>
-          {% else %}
-          <span>&#8595;</span>
-          {% endif %}
-          {% endif %}
-        </th>
+    var data = [{name: "Alex", share: 20.70},
 
-        <th>
-          <a href="/?gender={{ params1['gender'] }}&edlevel={{ params1['edlevel'] }}&mainbranch={{ params1['mainbranch'] }}&yearscode={{ params1['yearscode'] }}&computerskills={{ params1['computerskills'] }}&haveworkedwith={{ params1['haveworkedwith'] }}&country={{ params1['country'] }}&sort_by=country&sort_dir={{ get_sort_dir('country') }}"
-            style="text-decoration: none; color: inherit;">Country</a>
-          {% if params1['sort_by'] == 'country' %}
-          {% if params1['sort_dir'] == 'asc' %}
-          <span>&#8593;</span>
-          {% else %}
-          <span>&#8595;</span>
-          {% endif %}
-          {% endif %}
-        </th>
+                {name: "Shelly", share: 30.92},
 
-      </thead>
-      <tbody>
-        {% for row in theme %}
-        <tr>
-          <td>{{ row.gender }}</td>
-          <td>{{ row.edlevel }}</td>
-          <td>{{ row.mainbranch }}</td>
-          <td>{{ row.yearscode }}</td>
-          <td>{{ row.computerskills }}</td>
-          <td class="haveworkedwith_td">{{ row.haveworkedwith }}</td>
-          <td class="haveworkedwith_td">{{ row.country }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
-  {% else %}
-  <div class="table_container">
-    <h4>No results found.</h4>
-  </div>
-  {% endif %}
+                {name: "Clark", share: 15.42},
+
+                {name: "Matt", share: 13.65},
+
+                {name: "Jolene", share: 19.31}];
+
+   
+
+    var g = svg.append("g")
+
+               .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+
+
+    // Step 4
+
+    var ordScale = d3.scaleOrdinal()
+
+                         .domain(data)
+
+                         .range(['#ffd384','#94ebcd','#fbaccc','#d3e0ea','#fa7f72']);
+
+
+
+    // Step 5
+
+    var pie = d3.pie().value(function(d) {
+
+            return d.share;
+
+        });
+
+
+
+    var arc = g.selectAll("arc")
+
+               .data(pie(data))
+
+               .enter();
+
+
+
+    // Step 6
+
+    var path = d3.arc()
+
+                 .outerRadius(radius)
+
+                 .innerRadius(0);
+
+
+
+    arc.append("path")
+
+       .attr("d", path)
+
+       .attr("fill", function(d) { return ordScale(d.data.name); });
+
+
+
+    // Step 7
+
+    var label = d3.arc()
+
+                  .outerRadius(radius)
+
+                  .innerRadius(0);
+
+       
+
+    arc.append("text")
+
+       .attr("text-anchor", "middle")
+
+       .attr("transform", function(d) {
+
+                return "translate(" + label.centroid(d) + ")";
+
+        })
+
+       .text(function(d) { return d.data.name + " " + d.data.share; })
+
+       .style("font-family", "arial")
+
+       .style("font-size", 15);
+
+       
+
+
+
+       
+
+</script>
+<!-- Pie graph END -->
+
+
+ 
 </body>
 
 </html>
