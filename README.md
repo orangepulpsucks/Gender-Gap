@@ -11,7 +11,7 @@ Completed a fully functioning movie database to practice working with CSS, Docke
 <br>
 
 ### Visualizations Page:
-<img width="802" alt="Screenshot 2023-07-16 at 12 11 46 AM" src="https://github.com/orangepulpsucks/Gender-Gap/assets/42681894/3d52f127-344a-4ae9-8037-903b826d0428">
+<img width="1225" alt="Screenshot 2023-07-16 at 12 12 50 AM" src="https://github.com/orangepulpsucks/Gender-Gap/assets/42681894/b34c9e20-8589-47f6-8b3a-1e652cd6baf4">
 
 ### About Page:
 <img width="795" alt="Screenshot 2023-07-16 at 12 11 31 AM" src="https://github.com/orangepulpsucks/Gender-Gap/assets/42681894/6ad0c660-f30a-40ea-a29f-9ddc83e2d5fe">
