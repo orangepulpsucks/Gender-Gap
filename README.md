@@ -1,6 +1,6 @@
 # Visualizing Gender in Tech
 This is my submission for **TechTogether 2023 Hackathon**.
-Completed a fully functioning movie database to practice working with **CSS**, **Docker**, **Github**, **HTML**, **JavaScript**, **pgAdmin**, **Python**, **PostgreSQL**, and **D3**. 
+Completed a semi functioning movie database to practice working with **CSS**, **Docker**, **Github**, **HTML**, **JavaScript**, **pgAdmin**, **Python**, **PostgreSQL**, and **D3**. 
 <br>
 <br>**Dataset Used:** https://www.kaggle.com/datasets/ayushtankha/70k-job-applicants-data-human-resource/code 
 <br>
