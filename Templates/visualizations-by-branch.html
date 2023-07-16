@@ -3,9 +3,7 @@
 <html>
 
 <head>
-  <title>[VISUALIZATIONS]</title>
-
-  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <title>[HOME]</title>
 
   <style>
     h1 {
@@ -29,7 +27,7 @@
       margin-bottom: -15px;
       font-size: 45px;
       font-family: arial;
-      color: #000000;
+      color: rgb(26, 86, 190);
       /* position: fixed; */
       top: 0;
       left: 0;
@@ -265,7 +263,7 @@
       width: 100%;
       max-width: 100%;
       white-space: nowrap;
-      background-color: #333;
+      background-color: #847f7f;
       color: #fff;
       box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     }
@@ -296,11 +294,11 @@
     }
 
     .boostrap4_table_head_dark_hoverable tbody tr:hover {
-      background-color: #222;
+      background-color: #615f5f;
     }
 
     .boostrap4_table_head_dark_hoverable th {
-      background-color: #222;
+      background-color: #5c5757;
       color: #fff;
       white-space: nowrap;
     }
@@ -335,6 +333,17 @@
       margin-bottom: 20px;
     }
 
+    .drop:hover > .nested-drop {
+      display: block;
+    }
+
+    .nested-drop {
+      display: block;
+    }
+
+    .nested-drop li {
+      display: block;
+    }
 
       </style>
 </head>
@@ -343,143 +352,25 @@
   <!-- Header -->
   <a href="http://127.0.0.1:5000" style="text-decoration: none;"><h1>Visualizing Gender in Tech</h1></a>
 
-  <!-- Menu Tabs -->
-  <nav>
-    <ul id="main">
-      <li onclick="window.location.href='http://127.0.0.1:5000/'">Home</li>
-      <li onclick="window.location.href='http://127.0.0.1:5000/'">Visualizations</li>
-      <li onclick="window.location.href='http://127.0.0.1:5000/about'">About</li>
-    </ul>
-  </nav>
+<!-- Menu Tabs -->
+<nav>
+  <ul id="main">
+    <li onclick="window.location.href='http://127.0.0.1:5000/'">Home</li>
+    <li class="visualizations">Visualizations
+      <!-- For DROPDOWN MENU  -->
+      <ul class="drop">
+        <li onclick="window.location.href='http://127.0.0.1:5000/Visualizations-by-Gender'">by Gender</li>
+        <li onclick="window.location.href='http://127.0.0.1:5000/Visualizations-by-Education'">by Education
+          <!-- Nested Dropdown
+          <ul class="nested-drop">
+            <li onclick="window.location.href='http://127.0.0.1:5000/Masters'">Undergrad</li>
+            <li onclick="window.location.href='http://127.0.0.1:5000/dsdfsdf'">Masters</li>
+          </ul> -->
+        </li>
+        <li onclick="window.location.href='http://127.0.0.1:5000/Visualizations-by-Branch'">by Branch</li>
+      </ul>
+    </li>
+    <li onclick="window.location.href='http://127.0.0.1:5000/about'">About</li>
+  </ul>
+</nav>
 
-<!-- Pie Graph -->
-<br> 
-<br>
-<h2>Pie Chart</h2>
-<br> 
-
-
-<svg width="500" height="400"></svg> <!--Step 2-->
-
-<script>
-
-   
-
-    // Step 3
-
-    var svg = d3.select("svg"),
-
-        width = svg.attr("width"),
-
-        height = svg.attr("height"),
-
-        radius = 200;
-
-
-
-    // Step 1       
-
-    var data = [{name: "Alex", share: 20.70},
-
-                {name: "Shelly", share: 30.92},
-
-                {name: "Clark", share: 15.42},
-
-                {name: "Matt", share: 13.65},
-
-                {name: "Jolene", share: 19.31}];
-
-   
-
-    var g = svg.append("g")
-
-               .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-
-
-    // Step 4
-
-    var ordScale = d3.scaleOrdinal()
-
-                         .domain(data)
-
-                         .range(['#ffd384','#94ebcd','#fbaccc','#d3e0ea','#fa7f72']);
-
-
-
-    // Step 5
-
-    var pie = d3.pie().value(function(d) {
-
-            return d.share;
-
-        });
-
-
-
-    var arc = g.selectAll("arc")
-
-               .data(pie(data))
-
-               .enter();
-
-
-
-    // Step 6
-
-    var path = d3.arc()
-
-                 .outerRadius(radius)
-
-                 .innerRadius(0);
-
-
-
-    arc.append("path")
-
-       .attr("d", path)
-
-       .attr("fill", function(d) { return ordScale(d.data.name); });
-
-
-
-    // Step 7
-
-    var label = d3.arc()
-
-                  .outerRadius(radius)
-
-                  .innerRadius(0);
-
-       
-
-    arc.append("text")
-
-       .attr("text-anchor", "middle")
-
-       .attr("transform", function(d) {
-
-                return "translate(" + label.centroid(d) + ")";
-
-        })
-
-       .text(function(d) { return d.data.name + " " + d.data.share; })
-
-       .style("font-family", "arial")
-
-       .style("font-size", 15);
-
-       
-
-
-
-       
-
-</script>
-<!-- Pie graph END -->
-
-
- 
-</body>
-
-</html>

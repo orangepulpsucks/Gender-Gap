@@ -3,7 +3,7 @@
 <html>
 
 <head>
-  <title>[ABOUT]</title>
+  <title>[VISUALIZATIONS]</title>
 
   <script src="https://d3js.org/d3.v4.min.js"></script>
 
@@ -22,19 +22,6 @@
       background: white;
       z-index: 9999;
     }
-
-    h1.custom-about-body {
-        font-size: 16px;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        color: rgb(0, 0, 0);
-        margin-top: 18px;
-        width: 25%;
-        font-weight: 30;
-        text-align: justify;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      
 
     h2 {
       /* second header */
@@ -375,32 +362,97 @@
       <li onclick="window.location.href='http://127.0.0.1:5000/About'">About</li>
     </ul>
   </nav>
-<!-- About Start -->
-  <!-- About Section Start -->
-  <div class="about-container">
-    <h1 class="custom-about-body">
-        <strong>About:</strong><br><br>
-        Welcome! I'm Yu-Ri, and I'm excited to present my project submission for the 
-        TechTogether 2023 Hackathon! My project, titled "Visualizing Gender in Tech," 
-        is driven by the goal of creating a compelling visual representation of the gender 
-        gap and promoting inclusivity for nonbinary individuals.<br><br>
-        In the tech industry, there is a pressing need to address the gender gap and ensure 
-        equal representation. Through this database, I aim to shed light on these issues and 
-        spark meaningful discussions about diversity and inclusivity in the field.<br><br>
-        To bring my project to life, I utilized the "70k+ Job Applicants Data (Human Resource)" 
-        dataset sourced from <a href="https://www.kaggle.com/datasets/ayushtankha/70k-job-applicants-data-human-resource/code" style="text-decoration: none; color: rgb(26, 86, 190);">Kaggle</a>. This comprehensive dataset provides valuable insights into 
-        job applicants and their backgrounds. By analyzing this data, I can contribute to the 
-        ongoing conversation about creating a more equitable and fair job market for everyone.
-        Thank you for taking the time to explore my project. Together, let's make strides towards 
-        a more inclusive tech industry!<br><br>
-        With Love,<br>
-        Yu-Ri :)    
-    </h1>
-</div>  
 
-<!-- About End -->
+<!-- Pie Graph -->
+<br> 
+<br> 
+<br> 
+<h2>By Gender</h2>
+<br> 
+<br> 
 
 
+<svg width="600" height="400"></svg> <!--Step 2-->
+
+<script src="https://d3js.org/d3.v5.min.js"></script> <!-- Step 0 -->
+
+<script>
+  // Step 3
+  var svg = d3.select("svg"),
+      width = svg.attr("width"),
+      height = svg.attr("height"),
+      radius = 200;
+
+  // Step 1       
+  var data = [
+    { name: "Man", share: 93.34 },
+    { name: "Woman", share: 4.79 },
+    { name: "Non Binary", share: 1.87 }
+  ];
+
+  var g = svg.append("g")
+             .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+  // Step 4
+  var ordScale = d3.scaleOrdinal()
+                   .domain(data.map(function(d) { return d.name; }))
+                   .range(['#ffd384', '#94ebcd', '#fbaccc']);
+
+  // Step 5
+  var pie = d3.pie().value(function(d) { return d.share; });
+
+  var arc = g.selectAll("arc")
+             .data(pie(data))
+             .enter();
+
+  // Step 6
+  var path = d3.arc()
+               .outerRadius(radius)
+               .innerRadius(0);
+
+  arc.append("path")
+     .attr("d", path)
+     .attr("fill", function(d) { return ordScale(d.data.name); });
+
+  // Step 7
+  var label = d3.arc()
+                .outerRadius(radius - 40)
+                .innerRadius(radius - 40);
+
+  // Add labels with percentages
+  arc.append("text")
+     .attr("text-anchor", "middle")
+     .attr("transform", function(d) {
+       var pos = label.centroid(d);
+       var midAngle = (d.startAngle + d.endAngle) / 2; // Calculate the middle angle of the arc
+       var dx = (radius - 40) * Math.sin(midAngle); // Adjust horizontal position based on the angle
+       var dy = -(radius - 40) * Math.cos(midAngle); // Adjust vertical position based on the angle
+
+// Adjust label positions
+    if (d.data.name === "Woman") {
+      dx -= 30; // Move label further to the left
+      dy += 70; // Move label lower
+    } else if (d.data.name === "Man") {
+      dx += 20; // Move label further to the right
+      dy -= 110; // Move label up
+    } else if (d.data.name === "Non Binary") {
+      dx += 60; // Move label further to the right
+      dy += 20; // Move label lower
+    }
+       
+
+       pos[0] = dx;
+       pos[1] = dy;
+
+       return "translate(" + pos + ")";
+     })
+     .text(function(d) {
+       return d.data.name + " " + d.data.share.toFixed(2) + "%";
+     })
+     .style("font-family", "arial")
+     .style("font-size", 15);
+</script>
+<!-- Pie graph END -->
 </body>
 
 </html>
