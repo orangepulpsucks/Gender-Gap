@@ -1,4 +1,4 @@
-# Gender-Gap
+# Visualizing Gender in Tech
 Submission for TechTogether 2023 Hackathon.
 Completed a fully functioning movie database to practice working with CSS, Docker, Github, HTML, JavaScript, pgAdmin, Python, and SQL. 
 <br>
